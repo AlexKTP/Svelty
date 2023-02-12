@@ -1,16 +1,33 @@
-# svelty
+### Built With
+* [![Flutter][flutter.dev]][https://flutter.dev/]
 
-A new Flutter project.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
 
-A few resources to get you started if this is your first Flutter project:
+### Goal
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The only purpose of this project is to learn basics of Flutter and Dart.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] Add Changelog
+- [ ] Add UserAccount
+- [ ] Add DashBoard
+- [ ] Add BackEnd
+- [ ] Multi-language Support
+    - [ ] English
+    - [ ] Spanish
+    - [ ] French
+    
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
