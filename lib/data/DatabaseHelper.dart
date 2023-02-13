@@ -73,4 +73,10 @@ class DatabaseHelper {
     return count;
   }
 
+  Future<bool> isThereNonSynchroData() async {
+    final db = await getDb();
+    final int? count = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM TRACK WHERE to_synchronize = 1'));
+    return count != null && count>0;
+  }
+
 }

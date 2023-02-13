@@ -42,7 +42,7 @@ class Track {
         leg = data['leg'],
         createdAt =
             DateTime.fromMillisecondsSinceEpoch(data['created_at'] as int),
-        toSynchronize = data['to_synchronize'];
+        toSynchronize = data['to_synchronize'] as int == 1;
 
   Map<String, dynamic> toMap() {
     return {

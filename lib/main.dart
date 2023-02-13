@@ -36,12 +36,14 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   DateTime currentDate = DateTime.now();
   String currentDateFormated = "";
+  bool _isThereNonSynchroData = false;
 
   @override
   void initState() {
     currentDateFormated = DateFormat('EEE d MMM yyyy').format(currentDate);
     TrackRepository trackRepository = TrackRepository(DatabaseHelper());
     trackRepository.rowCount().then((value) => _counter = value??=0);
+    trackRepository.isThereNonSynchroData().then((value) => _isThereNonSynchroData = value??=false);
     super.initState();
   }
 
@@ -69,6 +71,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if(_isThereNonSynchroData) Row(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    const Text('Données à synchroniser',
+                      style: TextStyle(
+                          color:  Colors.greenAccent,
+                         fontWeight: FontWeight.w100,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 10),),
+                    IconButton(onPressed: _synchronize, icon: const Icon(Icons.sync, color: Colors.greenAccent,))
+                  ],)
+                ],
+              )
+            ),
           ],
         ),
       ),
@@ -78,5 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void _synchronize() {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("Synchronisation lancée", style: TextStyle(color: Colors.black),), backgroundColor: Colors.cyanAccent,));
   }
 }

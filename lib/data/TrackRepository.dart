@@ -33,4 +33,8 @@ class TrackRepository implements Repository {
   Future<int?> rowCount() {
     return _localDataSource.getTrackCount();
   }
+  
+  Future<bool> isThereNonSynchroData()  {
+    return _localDataSource.isThereNonSynchroData();
+  }
 }
