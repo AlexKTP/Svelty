@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intl/intl.dart';
 import 'package:svelty/MeasureScreen.dart';
 import 'package:svelty/MyAppBar.dart';
@@ -6,6 +10,10 @@ import 'package:svelty/data/DatabaseHelper.dart';
 import 'package:svelty/data/TrackRepository.dart';
 
 void main() {
+  if(Platform.isAndroid || Platform.isIOS){
+    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  }
   runApp(const MyApp());
 }
 
@@ -38,8 +46,15 @@ class _MyHomePageState extends State<MyHomePage> {
   String currentDateFormated = "";
   bool _isThereNonSynchroData = false;
 
+  void initialization() async {
+    Timer(const Duration(seconds: 2), () {FlutterNativeSplash.remove();});
+  }
+
   @override
   void initState() {
+    if(Platform.isIOS || Platform.isAndroid){
+      initialization();
+    }
     currentDateFormated = DateFormat('EEE d MMM yyyy').format(currentDate);
     TrackRepository trackRepository = TrackRepository(DatabaseHelper());
     trackRepository.rowCount().then((value) => _counter = value??=0);
